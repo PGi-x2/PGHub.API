@@ -106,7 +106,7 @@ namespace PGHub.DataPersistance.Repositories
             await using var transaction = await _dataContext.Database.BeginTransactionAsync();
             try
             {
-                var post = _dataContext.Posts.Where(p => p.Id == id).Include(p => p.Attachments).FirstOrDefault();
+                var post = await _dataContext.Posts.Where(p => p.Id == id).Include(p => p.Attachments).FirstOrDefaultAsync();
 
                 if (post != null)
                 {
