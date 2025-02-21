@@ -33,6 +33,7 @@ namespace PGHub.DataPersistance.Repositories
         /// <returns>An <see cref="Task{User}"/> that contains the result of the created user.</returns>
         public async Task<User> CreateAsync(User user)
         {
+            user.Email = user.Email.ToLower();
             // Begin transaction
             await using var transaction = await _dataContext.Database.BeginTransactionAsync();
 
